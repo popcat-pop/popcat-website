@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Degen Popcat - The Ultimate Meme Coin</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #151522, #303050);
+            color: #fff;
+            font-family: 'Orbitron', 'Arial', sans-serif;
+            overflow: hidden;
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .token-info {
+            background: rgba(50, 50, 80, 0.8);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            max-width: 80%;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            color: #EDEDED;
+        }
+
+        .token-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: block;
+            box-shadow: 0 0 30px rgba(128, 0, 128, 0.5);
+            animation: spin 20s linear infinite;
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #6a3093, #a044ff);
+            color: white;
+            text-decoration: none;
+            font-size: 1.1em;
+            padding: 15px 30px;
+            border-radius: 30px;
+            display: inline-block;
+            margin: 10px 5px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 15px rgba(128, 0, 128, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(128, 0, 128, 0.6);
+        }
+
+        .contract-address {
+            cursor: pointer;
+            display: inline-block;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .popcat {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: opacity 0.5s ease;
+            z-index: 1000;
+        }
+
+        .counter {
+            font-size: 1.5em;
+            margin-top: 20px;
+            color: #FFCC00;
+        }
+
+        .sound-toggle {
+            background: #ff4081;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 1.2em;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .sound-toggle.disabled {
+            background: #777;
+        }
+
+        .sound-toggle-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>
+            <img src="file:///D:/degenpopcat/degen%20popcat.png" alt="Popcat" style="width: 30px; height: 30px; vertical-align: middle;">
+            Degen Popcat
+            <img src="file:///D:/degenpopcat/degen%20popcat.png" alt="Popcat" style="width: 30px; height: 30px; vertical-align: middle;">
+        </h1>
+    </header>
+
+    <div class="main-content">
+        <section class="token-info">
+            <img src="D:/degenpopcat/degen popcat.png" alt="Degen Popcat Token" class="token-img">
+            <h2>Degen Popcat (DPOPCAT) Token Information</h2>
+            <p><strong>Total Supply:</strong> 1 Billion</p>
+            <p><strong>Token Contract Address:</strong> 
+                <span class="contract-address" onclick="copyToClipboard()">0xAcc901637f77983d8FDbe03dCaF648b886c16995 (Click to copy)</span>
+            </p>
+            <div>
+                <a href="https://dex.swapdegen.tips/swap?outputCurrency=0xAcc901637f77983d8FDbe03dCaF648b886c16995" target="_blank" class="cta-button">Buy Now</a>
+                <a href="https://dexscreener.com/degenchain/0xAcc901637f77983d8FDbe03dCaF648b886c16995" target="_blank" class="cta-button">Check Price</a>
+                <a href="https://telegram.org" target="_blank" class="cta-button">X</a>
+                <a href="https://wrapcast.xyz" target="_blank" class="cta-button">Telegram</a>
+                <a href="#" class="cta-button">Wrapcast</a> <!-- Add the X button with appropriate action or link -->
+            </div>
+            
+        </section>
+    </div>
+
+    <!-- Popcat Counter -->
+    <div class="counter">
+        Popcats Popped: <span id="popcatCount">0</span>
+    </div>
+
+    <!-- Poiing Sound -->
+    <audio id="poiingSound" src="file:///D:/degenpopcat/Pop%20sound%20effect.mp3" preload="auto"></audio>
+
+    <!-- Sound Toggle Button -->
+    <div class="sound-toggle-container">
+        <div id="soundToggle" class="sound-toggle" onclick="toggleSound()">Disable Sound</div>
+    </div>
+
+    <script>
+        const MAX_POPCATS = 10; // Randomize up to 10 Popcats on the screen
+        const popcats = new Set();
+        let popcatCounter = 0;
+        let soundEnabled = true;
+        const speedFactor = 0.5; // Slowed down the speed
+
+        // Create popcat elements
+        function createPopcats() {
+            const numberOfPopcats = Math.floor(Math.random() * (MAX_POPCATS)) + 1; // Randomize number of Popcats from 1 to 10
+            while (popcats.size < numberOfPopcats) {
+                const popcat = document.createElement('img');
+                popcat.src = 'D:/degenpopcat/degen popcat.png';
+                popcat.alt = 'Popcat';
+                popcat.className = 'popcat';
+
+                // Position randomly within the screen bounds
+                const x = Math.random() * (window.innerWidth - 100);
+                const y = Math.random() * (window.innerHeight - 100);
+                popcat.style.left = `${x}px`;
+                popcat.style.top = `${y}px`;
+
+                popcat.style.opacity = '0';
+                document.body.appendChild(popcat);
+                popcats.add(popcat);
+
+                // Randomize initial movement direction and speed with increased speed
+                popcat.xSpeed = (Math.random() * 3 + 1) * (Math.random() > 0.5 ? 1 : -1); // Increased speed
+                popcat.ySpeed = (Math.random() * 3 + 1) * (Math.random() > 0.5 ? 1 : -1); // Increased speed
+
+                // Fade in effect
+                setTimeout(() => {
+                    popcat.style.opacity = '1';
+                }, 100);
+
+                // On click, increment the counter, play sound (if enabled), and remove the popcat
+                popcat.addEventListener('click', () => {
+                    popcatCounter++;
+                    document.getElementById('popcatCount').innerText = popcatCounter;
+
+                    if (soundEnabled) {
+                        document.getElementById('poiingSound').play();
+                    }
+
+                    popcat.style.opacity = '0';
+                    setTimeout(() => {
+                        document.body.removeChild(popcat);
+                        popcats.delete(popcat);
+                        createPopcats(); // Create new Popcats after one is popped
+                    }, 500);
+                });
+            }
+        }
+
+        // Toggle sound on/off
+        function toggleSound() {
+            soundEnabled = !soundEnabled;
+            const toggleButton = document.getElementById('soundToggle');
+            if (soundEnabled) {
+                toggleButton.classList.remove('disabled');
+                toggleButton.innerText = 'Disable Sound';
+            } else {
+                toggleButton.classList.add('disabled');
+                toggleButton.innerText = 'Enable Sound';
+            }
+        }
+
+        // Update positions and handle bouncing
+        function updatePopcats() {
+            popcats.forEach(popcat => {
+                let x = parseFloat(popcat.style.left);
+                let y = parseFloat(popcat.style.top);
+
+                x += popcat.xSpeed * speedFactor;
+                y += popcat.ySpeed * speedFactor;
+
+                // Bounce back if the popcat reaches the edge
+                if (x <= 0 || x >= window.innerWidth - 100) popcat.xSpeed *= -1;
+                if (y <= 0 || y >= window.innerHeight - 100) popcat.ySpeed *= -1;
+
+                popcat.style.left = `${x}px`;
+                popcat.style.top = `${y}px`;
+            });
+        }
+
+        // Start the process
+        setInterval(() => {
+            updatePopcats();
+        }, 20);
+
+        // Initial Popcat creation
+        createPopcats();
+    </script>
+</body>
+</html>
